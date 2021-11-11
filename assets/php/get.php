@@ -1,6 +1,16 @@
 <?php
-if($_POST["message"]) {
-mail("technohints123@gmail.com", "New Response Received",
-$_POST["These are the contents in the new response from the form"]. "From: Email");
+
+if (isset($_POST['submit'])) {
+$name = $_POST['name'];
+$mailFrom = $_POST['email'];
+$message = $_POST['message'];
+
+
+$mailTo = "technohints123@gmail.com";
+$headers = "From: ".$mailFrom;
+$txt = "You have received an e-mail from ".$name.".\n\n".$message;
+
+mail($mailTo, $subject, $txt, $headers);
+header("Location: index.php?mailsend");
 }
 ?>
